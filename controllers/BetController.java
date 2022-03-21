@@ -16,7 +16,7 @@ public class BetController {
     private HashMap<Integer, BetRequest> savedBets = new HashMap<>();
 
     @GetMapping("/{id}")
-    BetResponse getBet(@PathVariable("id") Integer betId) throws BetNotExistException
+    public BetResponse getBet(@PathVariable("id") Integer betId) throws BetNotExistException
     {
         if (!savedBets.containsKey(betId))
         {
@@ -27,7 +27,7 @@ public class BetController {
     }
 
     @GetMapping("")
-    ArrayList<BetResponse> getBets()
+    public ArrayList<BetResponse> getBets()
     {
         ArrayList<BetResponse> result = new ArrayList<>();
         for (Map.Entry<Integer, BetRequest> entry : savedBets.entrySet()) {
@@ -38,7 +38,7 @@ public class BetController {
     }
 
     @PostMapping("")
-    Integer addBet(BetRequest newBet)
+    public Integer addBet(BetRequest newBet)
     {
         Integer id = savedBets.size();
         savedBets.put(id, newBet);
@@ -46,7 +46,7 @@ public class BetController {
     }
 
     @DeleteMapping("/{id}")
-    Integer deleteBet(@PathVariable("id") Integer betId) throws BetNotExistException //but its strange. How did yoi get id of not existing bet.
+    public Integer deleteBet(@PathVariable("id") Integer betId) throws BetNotExistException //but its strange. How did yoi get id of not existing bet.
     {
         if(!savedBets.containsKey(betId))
         {

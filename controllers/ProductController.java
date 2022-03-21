@@ -15,7 +15,7 @@ public class ProductController
     private HashMap<Integer, ProductRequest> savedProducts = new HashMap<>();
 
     @GetMapping("/{id}")
-    ProductResponse getProduct(@PathVariable("id") Integer productId) throws ProductNotExistException
+    public ProductResponse getProduct(@PathVariable("id") Integer productId) throws ProductNotExistException
     {
         if (!savedProducts.containsKey(productId))
         {
@@ -26,7 +26,7 @@ public class ProductController
     }
 
     @GetMapping("")
-    ArrayList<ProductResponse> getProducts()
+    public ArrayList<ProductResponse> getProducts()
     {
         ArrayList<ProductResponse> result = new ArrayList<>();
         for (Map.Entry<Integer, ProductRequest> entry : savedProducts.entrySet()) {
@@ -37,7 +37,7 @@ public class ProductController
     }
 
     @PostMapping("")
-    Integer addProduct(ProductRequest newProduct)
+    public Integer addProduct(ProductRequest newProduct)
     {
         Integer id = savedProducts.size();
         savedProducts.put(id, newProduct);
@@ -45,7 +45,7 @@ public class ProductController
     }
 
     @DeleteMapping("/{id}")
-    Integer deleteProduct(@PathVariable("id") Integer productId) throws ProductNotExistException //but its strange. How did yoi get id of not existing bet.
+    public Integer deleteProduct(@PathVariable("id") Integer productId) throws ProductNotExistException //but its strange. How did you get id of not existing product.
     {
         if(!savedProducts.containsKey(productId))
         {
