@@ -41,4 +41,13 @@ public class RegistrationServiceImpl implements RegistrationService {
         accountRepository.save(user);
         return mapper.map(user, AccountDto.class);
     }
+
+    @Override
+    public AccountDto auth(RegistrationParamsRequest params) throws AccountExistsException {
+        Optional<AccountEntity> existedUser = accountRepository.findOptionalByEmail(params.getEmail());
+        if (existedUser.isPresent()) {
+            throw new AccountExistsException();
+        }
+        return new AccountDto();
+    }
 }

@@ -9,4 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RegistrationService {
     AccountDto signup(RegistrationParamsRequest registrationParamsRequest) throws AccountExistsException;
+
+    AccountDto auth(RegistrationParamsRequest params) throws AccountExistsException;
 }

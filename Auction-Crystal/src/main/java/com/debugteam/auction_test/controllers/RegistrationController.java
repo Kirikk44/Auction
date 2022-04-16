@@ -23,4 +23,10 @@ public class RegistrationController {
     public AccountDto signup(@RequestBody RegistrationParamsRequest params) throws AccountExistsException {
         return registrationService.signup(params);
     }
+
+    @PostMapping("/auth")
+    public  AccountDto auth(@RequestBody RegistrationParamsRequest params) throws AccountExistsException {
+        return registrationService.auth(params);
+    }
+
 }
